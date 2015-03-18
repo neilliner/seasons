@@ -49,6 +49,14 @@
 
 ==========================================================================================================
 
-###### The big idea / The concept
+##### The big idea / The concept
 
 What are seasons?
+* Seasons are the passing of time.
+* Seasons are dictated by time and without time seasons can’t exist.
+
+Everything is temporary. Everything in life are at the mercy of time.
+
+##### Story
+* Give something life and when time moves forward seasons pass and this thing eventually dies. 
+* The things can be particles that are born and dies off as seasons pass. 
