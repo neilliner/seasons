@@ -47,4 +47,8 @@
 * Mouse-over -- Rock change color into emerald, ruby and sapphire.
 
 
+==========================================================================================================
 
+###### The big idea / The concept
+
+What are seasons?
