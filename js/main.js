@@ -7,7 +7,7 @@ function preload(){
 
 function setup(){
 	createCanvas(windowWidth,windowHeight);
-	star = new Star(20);
+	star = new Star(100);
 	star.updatePos();
 	t = new Tree();
 }
@@ -64,8 +64,8 @@ Star.prototype.appear = function(){
 		var sw = random(5);
 		this.so = random(100,200);
 		stroke(255,this.so);
-		strokeWeight(sw);
-		fill(255,255,255,this.sOpac);
+		strokeWeight(sw);  // stroke is random
+		fill(255,255,255,this.sOpac); // middle always white
 		ellipse(this.x[i],this.y[i],this.size[i],this.size[i]);
 	}
 }
@@ -98,31 +98,31 @@ Star.prototype.checkDisappear = function(){
 	}
 }
 
-Star.prototype.updatePosWithIndex = function(i){
-	this.x[i] = random(width);
-	this.y[i] = random(height);
-	this.size[i] = 5;
-}
+// Star.prototype.updatePosWithIndex = function(i){
+// 	this.x[i] = random(width);
+// 	this.y[i] = random(height);
+// 	this.size[i] = 5;
+// }
 
-Star.prototype.updatePosLeftWithIndex = function(i){
-	this.x[i] = random((width/2)/2);
-	this.y[i] = random(height);
-	this.size[i] = 5;
-}
+// Star.prototype.updatePosLeftWithIndex = function(i){
+// 	this.x[i] = random((width/2)/2);
+// 	this.y[i] = random(height);
+// 	this.size[i] = 5;
+// }
 
-Star.prototype.appearInMotion = function(){
-	for(i=0;i<this.amount;i++){
-		var sw = random(5);
-		var so = random(100,200);
-		stroke(255,so);
-		strokeWeight(sw);
-		fill(255,255,255,this.sOpac);
-		rect(this.x[i],this.y[i],100,1);
-	}
-}
+// Star.prototype.appearInMotion = function(){
+// 	for(i=0;i<this.amount;i++){
+// 		var sw = random(5);
+// 		var so = random(100,200);
+// 		stroke(255,so);
+// 		strokeWeight(sw);
+// 		fill(255,255,255,this.sOpac);
+// 		rect(this.x[i],this.y[i],100,1);
+// 	}
+// }
 
-Star.prototype.move = function(){
-	for(i=0;i<this.amount;i++){
-		this.x[i] += (this.xSpeed[i]) +25;
-	}	
-}
+// Star.prototype.move = function(){
+// 	for(i=0;i<this.amount;i++){
+// 		this.x[i] += (this.xSpeed[i]) +25;
+// 	}	
+// }
