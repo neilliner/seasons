@@ -12,7 +12,7 @@ function setup(){
 	snow.updatePos();
 	t = new Tree();
 
-	star = new Star(10);
+	star = new Star(5);
 	star.updatePos();
 }
 
@@ -28,7 +28,8 @@ function draw(){
 
 	star.appear();
 	star.fall();
-	star.updatePosWithIndex(star.checkDisappear());	
+	star.updatePosWithIndex(star.checkDisappear());
+	star.tail();
 }
 
 // ********** Tree Class **********
@@ -134,8 +135,6 @@ Snow.prototype.updatePosWithIndex = function(i){
 // 		this.x[i] += (this.xSpeed[i]) +25;
 // 	}	
 // }
-
-
 // ********** Star class **********
 
 function Star(amount){
@@ -151,34 +150,39 @@ function Star(amount){
 
 Star.prototype.appear = function(){
 	for(i=0;i<this.amount;i++){
-		var sw = random(5);
-		this.so = random(100,200);
-		stroke(255,this.so);
-		strokeWeight(sw);  // stroke is random
-		fill(255,255,255,this.sOpac); // middle always white
-		ellipse(this.x[i],this.y[i],this.size[i],this.size[i]);
+		stroke(65,255,200,0); //head of the shootign star
+		strokeWeight(5);
+		line(this.x[i],this.y[i],this.x[i]-20,this.y[i]-20);
 	}
 }
 
-Star.prototype.tail = function(){  // the tail for the shooting stars
-	for(i=0; i<this.amount; i++){
-		fill(255,255,255,this.sOpac);
-		ellipse(this.x[i],this.y[i],size[i],this.size[i]);
-
+Star.prototype.tail= function(){  // the tail for the shooting stars
+	
+	for(i=0;i<this.amount;i++){	
+		noStroke();
+		var xx = this.x[i];
+		var yy = this.y[i];
+		var opac = 200;
+		var size = 10;
+		for(j=100;j>0;j--){
+			fill(255,255,255,opac);
+			ellipse(xx+(20+j*2),yy+(20+j*2),size,size);
+			opac -=2;
+			size -= 0.1;
+		}
 	}
-
 }
 
 Star.prototype.updatePos = function(){
 	this.sOpac = 255;
 	for(i=0;i<this.amount;i++){
-		this.x[i] = random(width);
-		this.y[i] = random(height);
+		this.x[i] = random(-500, width);
+		this.y[i] = random(-200, -500);
 		this.size[i] = 5;
 	}
 	for(i=0;i<this.amount;i++){
-		this.xSpeed[i] = 10;
-		this.ySpeed[i] = 10;
+		this.xSpeed[i] = 5;
+		this.ySpeed[i] = 5;
 	}
 }
 
@@ -191,14 +195,14 @@ Star.prototype.fall = function(){
 
 Star.prototype.checkDisappear = function(){
 	for(i=0;i<this.amount;i++){
-		if (this.x[i] < 0 || this.x[i] > width || this.y[i] < 0 || this.y[i] > height) {
+		if (this.x[i] < 0 || this.x[i] > width  || this.y[i] > height) {
 			return i;
 		}
 	}
 }
 
 Star.prototype.updatePosWithIndex = function(i){
-	this.x[i] = random(width);
-	this.y[i] = random(height);
-	this.size[i] = 5;
+	this.x[i] = random(-500, width);
+	this.y[i] = random(-200, -500);
+	this.size[i] = 100;
 }
