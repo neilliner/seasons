@@ -1,3 +1,12 @@
+###### from Neil 3.19.15
+### Separating Classes
+
+I made couples of additional .js classes(files) in order to make the main.js clean. So, from now we can really develop our class separately to avoid syncing conflicts. 
+
+
+==========================================================================================================
+
+
 ###### from Arie  03,17,15
 ### StoryA :
 
