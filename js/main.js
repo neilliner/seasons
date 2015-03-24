@@ -12,7 +12,7 @@ function setup(){
 	createCanvas(windowWidth,windowHeight);
 	//snow = new Snow(100);
 	//snow.updatePos();
-	ice = new Iceburg();
+	ice = new Iceberg();
 
 	star = new Star(5);
 	star.updatePos();

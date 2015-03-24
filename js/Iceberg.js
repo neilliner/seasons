@@ -1,6 +1,6 @@
-// ********** Iceburg Class **********
+// ********** Iceberg Class **********
 
-function Iceburg(){
+function Iceberg(){
 	
 	this.location = createVector(random(width),random(height));
 	
@@ -13,7 +13,7 @@ function Iceburg(){
 	this.c2 = color(227,234,255);
 }
 
-Iceburg.prototype.appear = function(){
+Iceberg.prototype.appear = function(){
 	noStroke();
 	fill(this.c1);
 	triangle(this.p1.x,this.p1.y,this.p2.x,this.p2.y,this.p3.x,this.p3.y);
