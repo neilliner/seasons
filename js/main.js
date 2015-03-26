@@ -11,6 +11,7 @@ function preload(){
 }
 
 function setup(){
+	blendMode(MULTIPLY);
 	createCanvas(windowWidth,windowHeight);
 	//snow = new Snow(100);
 	//snow.updatePos();
@@ -21,15 +22,15 @@ function setup(){
 
 	aur = new Aurora();
 	aur.lengthOfAur();
-	
+
 	paper.setup(document.getElementById('defaultCanvas'));
 	landscape = paper.project.importSVG(document.getElementById('landscape'));
-
-    //landscape.position = new paper.Point(windowWidth/2,windowHeight);
+    landscape.position = createVector(windowWidth/2,windowHeight/2);
 };
 
 function draw(){
 	//background(0);
+
 	ice.appear();
 	
 	// Snows
