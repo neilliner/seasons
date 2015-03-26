@@ -12,8 +12,6 @@ function preload(){
 
 function setup(){
 	createCanvas(windowWidth,windowHeight);
-	var canvas = document.getElementById('defaultCanvas');
-	paper.setup(canvas);
 	//snow = new Snow(100);
 	//snow.updatePos();
 	ice = new Iceberg();
@@ -23,14 +21,15 @@ function setup(){
 
 	aur = new Aurora();
 	aur.lengthOfAur();
-
+	
+	paper.setup(document.getElementById('defaultCanvas'));
 	landscape = paper.project.importSVG(document.getElementById('landscape'));
 
-    landscape.position = new paper.Point(windowWidth/2,windowHeight/1.3);
+    //landscape.position = new paper.Point(windowWidth/2,windowHeight);
 };
 
 function draw(){
-	background(0);
+	//background(0);
 	ice.appear();
 	
 	// Snows
@@ -46,4 +45,6 @@ function draw(){
 
 	aur.appear();
 	aur.updateLen();
+
+	landscape.view.update();
 };
