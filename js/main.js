@@ -1,7 +1,7 @@
 //var snow =[];
 var ice = [];
 var star =[];
-
+var water = [];
 var aur = [];
 
 var landscape;
@@ -23,13 +23,16 @@ function setup(){
 	aur = new Aurora();
 	aur.lengthOfAur();
 
+	water = new Water();
+	water.init();
+
 	paper.setup(document.getElementById('defaultCanvas'));
 	landscape = paper.project.importSVG(document.getElementById('landscape'));
     landscape.position = createVector(windowWidth/2,windowHeight/2);
 };
 
 function draw(){
-	//background(0);
+	background(0);
 
 	ice.appear();
 	
@@ -44,8 +47,12 @@ function draw(){
 	star.updatePosWithIndex(star.checkDisappear());
 	star.tail();
 
-	aur.appear();
-	aur.updateLen();
+	//aur.appear();
+	//aur.updateLen();
+
+	water.appear();
+	water.flow();
+	//water.reFlow(water.checkDisappear());
 
 	landscape.view.update();
 };
