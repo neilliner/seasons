@@ -5,6 +5,7 @@ var water = [];
 var aur = [];
 
 var landscape;
+var theX;
 
 function preload(){
 
@@ -29,11 +30,24 @@ function setup(){
 	paper.setup(document.getElementById('defaultCanvas'));
 	landscape = paper.project.importSVG(document.getElementById('landscape'));
     landscape.position = createVector(windowWidth/2,windowHeight/2);
+
+    theX = 0;
 };
 
 function draw(){
 	background(0);
 
+	if(mouseX < (width/2)/2){
+		theX -= 0.5;
+	}
+	else if (mouseX > (width/2) + ((width/2)/2)){
+		theX += 0.5;
+	}
+	else{
+		theX = theX;
+	}
+		push();
+		translate(theX,0);
 	ice.appear();
 	
 	// Snows
@@ -54,5 +68,9 @@ function draw(){
 	water.flow();
 	//water.reFlow(water.checkDisappear());
 
+
+
 	landscape.view.update();
+		pop();
+	
 };

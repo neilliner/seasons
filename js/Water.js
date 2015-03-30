@@ -31,7 +31,8 @@ Water.prototype.flow = function(){
 			this.p[i].y -= 1;
 		}
 	}
-	this.reFlow(this.checkDisappear());
+	//this.reFlow(this.checkDisappear());
+	this.reFlow();
 }
 
 Water.prototype.init = function(){
@@ -44,15 +45,28 @@ Water.prototype.init = function(){
 	}
 }
 
-Water.prototype.checkDisappear = function(){
+// Water.prototype.checkDisappear = function(){
+// 	for(i=0;i<this.amount;i++){
+// 		if(this.p[i].x < 0) {
+// 			//console.log(i);
+// 			return i;
+// 		}
+// 	}
+// }
+
+Water.prototype.reFlow = function(i){
 	for(i=0;i<this.amount;i++){
 		if(this.p[i].x < 0) {
 			//console.log(i);
-			return i;
+			//return i;
+			this.p[i] = createVector(width,this.p[i].y);
 		}
 	}
+	//this.p[i].x = width;
+	// var theY = this.getY(i)
+	// this.p[i] = createVector(width,theY);
 }
 
-Water.prototype.reFlow = function(i){
-	this.p[i].x = width;
-}
+// Water.prototype.getY = function(index){
+// 	return this.p[i].y;
+// }
