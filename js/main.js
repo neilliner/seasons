@@ -16,26 +16,35 @@ function setup(){
 	createCanvas(windowWidth,windowHeight);
 	//snow = new Snow(100);
 	//snow.updatePos();
-	ice = new Iceberg();
+	ice = new Iceberg(10);
+	ice.init();
 
 	star = new Star(5);
 	star.updatePos();
 
 	aur = new Aurora();
-	aur.lengthOfAur();
+	aur.init();
+	// aur.lengthOfAur();
 
 	water = new Water();
 	water.init();
 
-	paper.setup(document.getElementById('defaultCanvas'));
-	landscape = paper.project.importSVG(document.getElementById('landscape'));
-    landscape.position = createVector(windowWidth/2,windowHeight/2);
+	// paper.setup(document.getElementById('defaultCanvas'));
+	// landscape = paper.project.importSVG(document.getElementById('landscape'));
+ //    landscape.position = createVector(windowWidth/2,windowHeight/2);
 
     theX = 0;
 };
 
 function draw(){
-	background(0);
+	// rectMode(CENTER);
+	
+		background(0,255,255);
+
+	// for(i=0;i<height;i++){
+	// 	stroke(i/4,0,0);
+	// 	line(0,i,width,i);
+	// }
 
 	if(mouseX < (width/2)/2){
 		theX -= 0.5;
@@ -61,7 +70,8 @@ function draw(){
 	star.updatePosWithIndex(star.checkDisappear());
 	star.tail();
 
-	//aur.appear();
+	aur.appear();
+	aur.move();
 	//aur.updateLen();
 
 	water.appear();
@@ -70,7 +80,7 @@ function draw(){
 
 
 
-	landscape.view.update();
+	//landscape.view.update();
 		pop();
 	
 };
