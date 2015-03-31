@@ -12,7 +12,7 @@ function preload(){
 }
 
 function setup(){
-	blendMode(MULTIPLY);
+	//blendMode(MULTIPLY);
 	createCanvas(windowWidth,windowHeight);
 	//snow = new Snow(100);
 	//snow.updatePos();
@@ -26,7 +26,7 @@ function setup(){
 	aur.init();
 	// aur.lengthOfAur();
 
-	water = new Water();
+	water = new Water(2000);
 	water.init();
 
 	// paper.setup(document.getElementById('defaultCanvas'));

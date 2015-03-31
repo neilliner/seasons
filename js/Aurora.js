@@ -10,7 +10,8 @@ function Aurora(){
 	this.cp4 = new Array(this.amount);
 
 	//this.xSpeed = 30;
-
+	this.isAp2GoingLeft = true;
+	this.isAp1GoingLeft = true;
 }
 
 
@@ -43,12 +44,37 @@ Aurora.prototype.init = function(){
 Aurora.prototype.move = function(){
 	
 	for(i = 0; i < this.amount ; i++){
-		//if(this.ap2[i].x >= width || this.ap2[i].x <= 0){
-			//this.xSpeed *= -1;
-			this.ap2[i].x -= 20;
-			this.cp2[i].x -= 20;
-			this.cp3[i].x -= 20;
-	//}
+		if(this.ap2[0].x < 0-1000){
+			this.isAp2GoingLeft = false;
+		}
+		else if(this.ap2[0].x > width + 1000){
+			this.isAp2GoingLeft = true;
+		}
+		if(this.isAp2GoingLeft){
+			this.ap2[i].x -= 5;
+			this.cp2[i].x -= 5;
+			this.cp3[i].x -= 5;
+		}
+		else{
+			this.ap2[i].x += 5;
+			this.cp2[i].x += 5;
+			this.cp3[i].x += 5;
+		}
+
+		if(this.ap1[0].x < 0){
+			this.isAp1GoingLeft = false;
+		}
+		else if(this.ap1[0].x > width){
+			this.isAp1GoingLeft = true;
+		}
+		if(this.isAp1GoingLeft){
+			this.ap1[i].x -= 1;
+			this.cp1[i].x -= 1;
+		}
+		else{
+			this.ap1[i].x += 1;
+			this.cp1[i].x += 1;
+		}
 	}
 
 }
