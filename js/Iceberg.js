@@ -44,9 +44,10 @@ Iceberg.prototype.appear = function(){
 
 Iceberg.prototype.init = function(){
 	var dep = height/4;
-	var mul = 2;
+	
 	
 	for(i = 0; i < this.amount; i++){
+	var mul = random(2,4);
 	var ran1 = random(35,45); // 40
 	var ran2 = random(25,35); // 30
 	var ran3 = random(20,30); // 25
@@ -57,7 +58,18 @@ Iceberg.prototype.init = function(){
 	var ran8 = random(60,70); // 65
 
 	this.location[i] = createVector(random(width),random(height-dep*2, height-dep));
+	if(i>0){
+	// if(this.location[i].x - this.location[i-1].x < 200 && this.location[i-1].x - this.location[i].x > 0 - 200){
+	// 	this.location[i].x = this.location[i].x + 300;
+	// 	//console.log("OK!!!!1");
+	// }
 
+	// else if(this.location[i-1].x - this.location[i].x < 200 && this.location[i].x - this.location[i-1].x > 0 - 200){
+	// 	//console.log("OK!!!!2");
+	// 	this.location[i].x = this.location[i].x - 300;
+	// }
+	this.location[i].x = this.location[i-1].x +500;
+	}
 	this.p1[i] = createVector(this.location[i].x,this.location[i].y-ran1*mul);
 	this.p2[i] = createVector(this.location[i].x,this.location[i].y+ran2*mul);
 	this.p3[i] = createVector(this.location[i].x+ran2*mul,this.location[i].y+ran2*mul);

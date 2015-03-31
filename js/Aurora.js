@@ -18,7 +18,7 @@ Aurora.prototype.appear = function(){
 	for(i = 0; i < this.amount ; i++){
 		beginShape();
 		noFill();
-		stroke(0, i*10, 255, 150);
+		stroke(35, i*10, 70+i*2, 150);
 		strokeWeight(10);
 		vertex(this.ap1[i].x, this.ap1[i].y); 
 		bezierVertex(this.cp1[i].x, this.cp1[i].y, this.cp2[i].x, this.cp2[i].y, this.ap2[i].x, this.ap2[i].y);
@@ -45,9 +45,9 @@ Aurora.prototype.move = function(){
 	for(i = 0; i < this.amount ; i++){
 		//if(this.ap2[i].x >= width || this.ap2[i].x <= 0){
 			//this.xSpeed *= -1;
-			this.ap2[i].x -= 30;
-			this.cp2[i].x -= 30;
-			this.cp3[i].x -= 30;
+			this.ap2[i].x -= 20;
+			this.cp2[i].x -= 20;
+			this.cp3[i].x -= 20;
 	//}
 	}
 

@@ -16,7 +16,7 @@ function setup(){
 	createCanvas(windowWidth,windowHeight);
 	//snow = new Snow(100);
 	//snow.updatePos();
-	ice = new Iceberg(10);
+	ice = new Iceberg(5);
 	ice.init();
 
 	star = new Star(5);
@@ -39,7 +39,7 @@ function setup(){
 function draw(){
 	// rectMode(CENTER);
 	
-		background(0,255,255);
+		background(35,30,70);
 
 	// for(i=0;i<height;i++){
 	// 	stroke(i/4,0,0);
@@ -47,17 +47,17 @@ function draw(){
 	// }
 
 	if(mouseX < (width/2)/2){
-		theX -= 0.5;
+		theX -= 10;
 	}
 	else if (mouseX > (width/2) + ((width/2)/2)){
-		theX += 0.5;
+		theX += 10;
 	}
 	else{
 		theX = theX;
 	}
 		push();
 		translate(theX,0);
-	ice.appear();
+	
 	
 	// Snows
 
@@ -73,6 +73,8 @@ function draw(){
 	aur.appear();
 	aur.move();
 	//aur.updateLen();
+
+	ice.appear();
 
 	water.appear();
 	water.flow();
