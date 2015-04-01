@@ -1,7 +1,7 @@
 // ********** Water class **********
 
-function Water(){
-	this.amount = 200;
+function Water(amount){
+	this.amount = amount;
 	this.p = new Array(this.amount);
 	this.color = new Array(this.amount);
 	this.isGoingUp = new Array(this.amount);
@@ -19,16 +19,17 @@ Water.prototype.appear = function(){
 
 Water.prototype.flow = function(){	
 	for(var i=0;i<this.amount;i++){
-		this.p[i].x -= 2;
-		if(this.p[i].y<(height/2)-random(180)){ this.isGoingUp[i] = false; }
-		else if(this.p[i].y>(height/2)+random(180)){ this.isGoingUp[i] = true; }
+		this.p[i].x -= 2 * 3;
+		//this.p[i].y -= ;
+		if(this.p[i].y<(height/2+200)-random(180)){ this.isGoingUp[i] = false; }
+		else if(this.p[i].y>(height/2+200)+random(180)){ this.isGoingUp[i] = true; }
 
 		if(this.isGoingUp[i] == false){
-			this.p[i].y += 1;
+			this.p[i].y += 1 * 3;
 		}
 
 		else if(this.isGoingUp[i] == true){
-			this.p[i].y -= 1;
+			this.p[i].y -= 1 * 3;
 		}
 	}
 	//this.reFlow(this.checkDisappear());
@@ -37,11 +38,11 @@ Water.prototype.flow = function(){
 
 Water.prototype.init = function(){
 	for(var i=0;i<this.amount;i++){
-		this.p[i] = createVector(random(width),random(height/2,height));
+		this.p[i] = createVector(random(0 - 1000,width + 1000),random(height/2+200,height));
 		if(random(2)<1){this.isGoingUp[i] = false;}
 		else{this.isGoingUp[i] = true;}
-		this.color[i] = color(0,random(150,200),255,200);
-		this.size[i] = random(50,80);
+		this.color[i] = color(255,255,255,200);
+		this.size[i] = random(10,20);
 	}
 }
 
@@ -56,10 +57,10 @@ Water.prototype.init = function(){
 
 Water.prototype.reFlow = function(i){
 	for(i=0;i<this.amount;i++){
-		if(this.p[i].x < 0) {
+		if(this.p[i].x < 0 - 1000) {
 			//console.log(i);
 			//return i;
-			this.p[i] = createVector(width,this.p[i].y);
+			this.p[i] = createVector(width+1000,this.p[i].y);
 		}
 	}
 	//this.p[i].x = width;
