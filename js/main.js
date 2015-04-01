@@ -4,12 +4,16 @@ var star =[];
 var water = [];
 var aur = [];
 
-var landscape;
+var landscape1;
+var landscape2;
 var theX;
 
-function preload(){
 
+function preload() {
+  landscape1 = loadImage("img/landscape1.svg");
+  landscape2 = loadImage("img/landscape2.svg");
 }
+
 
 function setup(){
 	blendMode(MULTIPLY);
@@ -27,15 +31,12 @@ function setup(){
 	water = new Water();
 	water.init();
 
-	paper.setup(document.getElementById('defaultCanvas'));
-	landscape = paper.project.importSVG(document.getElementById('landscape'));
-    landscape.position = createVector(windowWidth/2,windowHeight/2);
 
     theX = 0;
 };
 
 function draw(){
-	background(0);
+	background();
 
 	if(mouseX < (width/2)/2){
 		theX -= 0.5;
@@ -48,6 +49,10 @@ function draw(){
 	}
 		push();
 		translate(theX,0);
+
+	image(landscape1, 300, 0, width, height);
+	image(landscape2, -300, 0, width, height);
+
 	ice.appear();
 	
 	// Snows
@@ -68,9 +73,6 @@ function draw(){
 	water.flow();
 	//water.reFlow(water.checkDisappear());
 
-
-
-	landscape.view.update();
 		pop();
 	
 };
