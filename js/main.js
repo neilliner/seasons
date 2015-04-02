@@ -52,6 +52,7 @@ function draw(){
 	pop();
 	
 	fill(50,190,230,255);
+	noStroke();
 	rect(0,height/2-20,2500,height);
 	
 	// for(i=0;i<height;i++){
