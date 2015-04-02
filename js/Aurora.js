@@ -1,64 +1,79 @@
 // ********** Aurora class **********
 
-function Aurora(){
-	//this.location = createVector(width/2,0);
-	this.x = new Array(width);
-	this.y = new Array(width);
-	this.amount = width;
-	this.len1 = new Array(width);
-	this.len2 = new Array(width);
-	this.isGoingUp = new Array(width);
-	this.lc1 = color(0,255,50,50);
-	this.lc2 = color(0,50,255,50);
+function Aurora(){ 
+	this.amount = 25;
+	this.ap1 = new Array(this.amount);
+	this.ap2 = new Array(this.amount);
+	this.ap3 = new Array(this.amount);
+
+	this.cp1 = new Array(this.amount);
+	this.cp2 = new Array(this.amount);
+	this.cp3 = new Array(this.amount);
+	this.cp4 = new Array(this.amount);
+
+	this.isAp2GoingLeft = true;
+	this.isAp1GoingLeft = true;
 }
+
 
 Aurora.prototype.appear = function(){
-	//angleMode(DEGREES);
-	strokeWeight(5);
-	for(var i=0;i<this.amount;i++){
-		stroke(lerpColor(this.lc1,this.lc2,i*0.0005));
-
-		push();
-			// if(i>this.amount/3){
-			// 	rotate(70);
-			// }else{
-			// 	rotate(90);
-			// }
-			// translate((this.x[i]+i)-600,this.y[i]-this.len1[i]-height*1.25);
-			translate(this.x[i]+i,this.y[i]-this.len1[i]);
-			line(0,0,0,1+i/5);
-		pop();
+	for(i = 0; i < this.amount ; i++){
+		beginShape();
+		noFill();
+		stroke(35, i*10, 70+i*2, 150);
+		strokeWeight(10);
+		vertex(this.ap1[i].x, this.ap1[i].y); 
+		bezierVertex(this.cp1[i].x, this.cp1[i].y, this.cp2[i].x, this.cp2[i].y, this.ap2[i].x, this.ap2[i].y);
+		bezierVertex(this.cp3[i].x, this.cp3[i].y, this.cp4[i].x, this.cp4[i].y, this.ap3[i].x, this.ap3[i].y);
+		endShape();
 	}
 }
 
-Aurora.prototype.lengthOfAur = function(){
-	 var n = 0.0;
-	for(var i=0;i<this.amount;i++){
-		this.x[i] = 0;
-		this.y[i] = height/2;
-		this.len1[i] = 1;
-		this.len1[i] += (noise(n)*100);
-		n+=0.005;
-		//this.location[i] = createVector(width/2,0);
+Aurora.prototype.init = function(){
+	var c = width / 3; // aurora ap2 control point length
+	for(i = 0; i < this.amount ; i++){
+		this.ap1[i] = createVector( width/ 2 + (i*5), -10 );
+		this.ap2[i] = createVector(width/2 + (i*5), height/4);
+		this.ap3[i] = createVector(width/2 + (i*5), height+10);
+
+		this.cp1[i] = createVector(this.ap1[i].x + width/4, this.ap1[i].y );
+		this.cp2[i] = createVector(this.ap2[i].x + c, this.ap2[i].y + c);
+		this.cp3[i] = createVector(this.ap2[i].x - c, this.ap2[i].y - c);
+		this.cp4[i] = createVector(this.ap3[i].x - width/4, this.ap3[i].y );
 	}
 }
-
-Aurora.prototype.updateLen = function(){
-	for(var i=0;i<this.amount;i++){
-
-		if(this.y[i]<(height/2)-random(180)){ this.isGoingUp[i] = false; }
-		else if(this.y[i]>(height/2)+random(180)){ this.isGoingUp[i] = true; }
-
-		if(this.isGoingUp[i] == false){
-			this.y[i] += (1*i/5000);
+Aurora.prototype.move = function(){
+	for(i = 0; i < this.amount ; i++){
+		if(this.ap2[0].x < 0-1000){
+			this.isAp2GoingLeft = false;
 		}
-
-		else if(this.isGoingUp[i] == true){
-			this.y[i] -= (1*i/5000);
+		else if(this.ap2[0].x > width + 1000){
+			this.isAp2GoingLeft = true;
 		}
-
+		if(this.isAp2GoingLeft){
+			this.ap2[i].x -= 5;
+			this.cp2[i].x -= 5;
+			this.cp3[i].x -= 5;
+		}
 		else{
-			this.y[i] -= (1*i/5000);
+			this.ap2[i].x += 5;
+			this.cp2[i].x += 5;
+			this.cp3[i].x += 5;
+		}
+
+		if(this.ap1[0].x < 0){
+			this.isAp1GoingLeft = false;
+		}
+		else if(this.ap1[0].x > width){
+			this.isAp1GoingLeft = true;
+		}
+		if(this.isAp1GoingLeft){
+			this.ap1[i].x -= 1;
+			this.cp1[i].x -= 1;
+		}
+		else{
+			this.ap1[i].x += 1;
+			this.cp1[i].x += 1;
 		}
 	}
 }

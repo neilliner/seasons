@@ -11,8 +11,11 @@ function Snow(amount){
 	this.so = 150;
 }
 
-Snow.prototype.appear = function(){
-	for(i=0;i<this.amount;i++){
+Snow.prototype.appear = function(amt){
+	if(amt > this.amount){
+		amt = this.amount;
+	}
+	for(i=0;i<amt;i++){
 		var sw = random(5);
 		this.so = random(100,200);
 		stroke(255,this.so);
@@ -26,7 +29,7 @@ Snow.prototype.updatePos = function(){
 	this.sOpac = 255;
 	for(i=0;i<this.amount;i++){
 		this.x[i] = random(width);
-		this.y[i] = random(height);
+		this.y[i] = 0;		
 		this.size[i] = 5;
 	}
 	for(i=0;i<this.amount;i++){
@@ -35,8 +38,11 @@ Snow.prototype.updatePos = function(){
 	}
 }
 
-Snow.prototype.fall = function(){
-	for(i=0;i<this.amount;i++){
+Snow.prototype.fall = function(amt){
+	if(amt > this.amount){
+		amt = this.amount;
+	}
+	for(i=0;i<amt;i++){
 		this.x[i] += this.xSpeed[i];
 		this.y[i] += this.ySpeed[i]; 
 	}
@@ -44,7 +50,7 @@ Snow.prototype.fall = function(){
 
 Snow.prototype.checkDisappear = function(){
 	for(i=0;i<this.amount;i++){
-		if (this.x[i] < 0 || this.x[i] > width || this.y[i] < 0 || this.y[i] > height) {
+		if (this.x[i] < 0 || this.x[i] > width || this.y[i] < 0 || this.y[i] > height-(random(height/4))) {
 			return i;
 		}
 	}
@@ -52,29 +58,6 @@ Snow.prototype.checkDisappear = function(){
 
 Snow.prototype.updatePosWithIndex = function(i){
 	this.x[i] = random(width);
-	this.y[i] = random(height);
+	this.y[i] = 0;
 	this.size[i] = 5;
 }
-
-// Snow.prototype.updatePosLeftWithIndex = function(i){
-// 	this.x[i] = random((width/2)/2);
-// 	this.y[i] = random(height);
-// 	this.size[i] = 5;
-// }
-
-// Snow.prototype.appearInMotion = function(){
-// 	for(i=0;i<this.amount;i++){
-// 		var sw = random(5);
-// 		var so = random(100,200);
-// 		stroke(255,so);
-// 		strokeWeight(sw);
-// 		fill(255,255,255,this.sOpac);
-// 		rect(this.x[i],this.y[i],100,1);
-// 	}
-// }
-
-// Snow.prototype.move = function(){
-// 	for(i=0;i<this.amount;i++){
-// 		this.x[i] += (this.xSpeed[i]) +25;
-// 	}	
-// }
