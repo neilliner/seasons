@@ -41,7 +41,7 @@ Water.prototype.init = function(){
 		this.p[i] = createVector(random(0 - 1000,width + 1000),random(height/2+200,height));
 		if(random(2)<1){this.isGoingUp[i] = false;}
 		else{this.isGoingUp[i] = true;}
-		this.color[i] = color(255,255,255,200);
+		this.color[i] = color(255,255,255,150);
 		this.size[i] = random(10,20);
 	}
 }
