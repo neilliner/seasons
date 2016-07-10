@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Neil, Kelly and Arie's Midterm Project</title>
-	<script type="text/javascript" src="js/vendor/p5.mod.js"></script>
-	<script type="text/javascript" src="js/vendor/p5.sound.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-	<script type="text/javascript" src="js/Star.js"></script>
-	<script type="text/javascript" src="js/Aurora.js"></script>
-	<script type="text/javascript" src="js/Snow.js"></script>
-	<script type="text/javascript" src="js/Iceberg.js"></script>
-	<script type="text/javascript" src="js/Water.js"></script>
-	<script type="text/javascript" src="js/Wave.js"></script>
-	<script type="text/javascript" src="js/Fish.js"></script>
-	<style>
+<meta charset="UTF-8">
+<title>Neil, Kelly and Arie's Midterm Project</title>
+<script type="text/javascript" src="js/vendor/p5.mod.js"></script>
+<script type="text/javascript" src="js/vendor/p5.sound.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/Star.js"></script>
+<script type="text/javascript" src="js/Aurora.js"></script>
+<script type="text/javascript" src="js/Snow.js"></script>
+<script type="text/javascript" src="js/Iceberg.js"></script>
+<script type="text/javascript" src="js/Water.js"></script>
+<script type="text/javascript" src="js/Wave.js"></script>
+<script type="text/javascript" src="js/Fish.js"></script>
+<style>
 
-		body{
-		margin: 0px; 
-		}
-		canvas{
-			display: block;
-			margin: 0 auto;
-		}
-	</style>
+	body{
+	margin: 0px; 
+	}
+	canvas{
+		display: block;
+		margin: 0 auto;
+		position: absolute;
+		top: 0;
+		z-index: 100;
+	}
+	#refresh-button{
+		position: absolute;
+		z-index: 200;
+		left: 10px;
+		top: 10px;
+	}
+</style>
 </head>
 <body>
-
+<div id="refresh-button"><button onclick="window.location.reload();">Click here if music is not playing</button></div>
 </body>
 </html>
