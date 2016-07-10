@@ -14,8 +14,8 @@ var fft;
 function preload() {
 	soundFormats('mp3');
 	music = loadSound('music/Yellow90s.mp3');
-  	landscape_front = loadImage("img/landscape_front.svg");
-  	landscape_back = loadImage("img/landscape_back.svg");
+  	landscape_front = loadImage("img/landscape_front.png");
+  	landscape_back = loadImage("img/landscape_back.png");
 }
 
 function setup(){
