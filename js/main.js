@@ -1,25 +1,29 @@
-//var snow =[];
+var snow =[];
 var ice = [];
 var star =[];
 var water = [];
 var aur = [];
+var wave = [];
+var fish = []
 
-// var landscape1;
-var landscape2;
-var theX;
-
+var music;
+var landscape_front;
+var landscape_back;
+var fft;
 
 function preload() {
-  landscape_front = loadImage("img/landscape_front.svg");
-  landscape_back = loadImage("img/landscape_back.svg");
+	soundFormats('mp3');
+	music = loadSound('music/Yellow90s.mp3');
+  	landscape_front = loadImage("img/landscape_front.png");
+  	landscape_back = loadImage("img/landscape_back.png");
 }
 
-
 function setup(){
-	//blendMode(MULTIPLY);
 	createCanvas(windowWidth,windowHeight);
-	//snow = new Snow(100);
-	//snow.updatePos();
+
+	snow = new Snow(100);
+	snow.updatePos();
+
 	ice = new Iceberg(5);
 	ice.init();
 
@@ -28,86 +32,65 @@ function setup(){
 
 	aur = new Aurora();
 	aur.init();
-	// aur.lengthOfAur();
 
 	water = new Water(2000);
 	water.init();
 
-	// paper.setup(document.getElementById('defaultCanvas'));
-	// landscape = paper.project.importSVG(document.getElementById('landscape'));
- //    landscape.position = createVector(windowWidth/2,windowHeight/2);
+	wave = new Wave();
 
-    theX = 0;
+	fish = new Fish(5);
+	fish.init();
+
+	music.play();
+	fft = new p5.FFT(.9,16);
 };
 
 function draw(){
 
-	// rectMode(CENTER);
-	
-		background(35,30,70);
-
-	push();
-	aur.appear();
-	aur.move();
-	pop();
-	
-	fill(50,190,230,255);
-	noStroke();
-	rect(0,height/2-20,2500,height);
-	
-	// for(i=0;i<height;i++){
-	// 	stroke(i/4,0,0);
-	// 	line(0,i,width,i);
-	// }
-
-	// if(mouseX < (width/2)/2){
-	// 	theX -= 10;
-	// }
-	// else if (mouseX > (width/2) + ((width/2)/2)){
-	// 	theX += 10;
-	// }
-	// else{
-	// 	theX = theX;
-	// }
-	
+	var spectrum = fft.analyze(16);
+	background(35,30,70);
 
 	star.appear();
 	star.fall();
 	star.updatePosWithIndex(star.checkDisappear());
 	star.tail();
 
-	var x3 = map(mouseX, 0, width, -300, width+300); // single iceburg
+	aur.appear();
+	aur.move();
+
+	fill(50,190,230,255);
+	noStroke();
+	rectMode(CORNER);
+	rect(0,(height/2),2500,height);
+
+	var x3 = map(mouseX, 0, width, -300, width+300); // single iceberg
 	var x1 = map(mouseX, 0, width, 0, width); // front
 	var x2 = map(mouseX, 0, width, 300, width-300); // back
 
 	push();
-	translate(-x2/4,0);
-	image(landscape_back, 0, height/8, 1700, height-height/4);
+		translate(-x2/4,0);
+		wave.appear(spectrum);
+		fish.appear();
+		image(landscape_back, 0, (height/8)+20, 1700, height-height/4);
 	pop();
 
 	push();
-	translate(-x1/2,0); 
-	image(landscape_front, 300, 0, 2000, height-height/4);
+		translate(-x1/2,0); 
+		image(landscape_front, 300, 20, 2000, height-height/4);
 	pop();
 
 	push();
-	translate(-x3,0); 
-	ice.appear();
-	pop();
-	
+		translate(-x3,0); 
+		water.appear();
+		water.flow();
+		ice.appear();
+		ice.floating();
+		ice.changeColorByMusic(spectrum);
+	pop();	
 
 	// Snows
 
-	// snow.appear();
-	// snow.fall();
-	// snow.updatePosWithIndex(snow.checkDisappear());	
-	//aur.updateLen();
-	water.appear();
-	water.flow();
-	//water.reFlow(water.checkDisappear());
-
-	//landscape.view.update();
-
-	
-	
+	snow.appear(millis()/1000);
+	snow.fall(millis()/1000);
+	snow.updatePosWithIndex(snow.checkDisappear());			
 };

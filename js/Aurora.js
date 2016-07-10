@@ -1,3 +1,5 @@
+// ********** Aurora class **********
+
 function Aurora(){ 
 	this.amount = 25;
 	this.ap1 = new Array(this.amount);
@@ -9,7 +11,6 @@ function Aurora(){
 	this.cp3 = new Array(this.amount);
 	this.cp4 = new Array(this.amount);
 
-	//this.xSpeed = 30;
 	this.isAp2GoingLeft = true;
 	this.isAp1GoingLeft = true;
 }
@@ -42,7 +43,6 @@ Aurora.prototype.init = function(){
 	}
 }
 Aurora.prototype.move = function(){
-	
 	for(i = 0; i < this.amount ; i++){
 		if(this.ap2[0].x < 0-1000){
 			this.isAp2GoingLeft = false;
@@ -76,5 +76,4 @@ Aurora.prototype.move = function(){
 			this.cp1[i].x += 1;
 		}
 	}
-
 }
